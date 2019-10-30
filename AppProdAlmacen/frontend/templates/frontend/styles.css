@@ -1,0 +1,38 @@
+body {
+   /* background-color: yellow; */
+}
+
+.Tarjeta {
+   text-align: center;
+   /* background-color: blue; */
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+}
+
+.ImagenTarjeta{
+   align-content: center;
+   /* background-color: red; */
+   width: 100px;
+   height: 100px;
+}
+
+#Nom_Empleado{
+   background-color: aqua;
+   font-size: 20px;
+}
+
+#Datos_Prod{
+   background-color: red;
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: space-between;
+   align-items: flex-start;
+}
+
+#Grafico{
+   height :120px;
+   border: 1px solid black;
+   background-color: yellow;
+}
