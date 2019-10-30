@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path, include
 
-from  AppProdAlmacen.views import EmpleadoView, AreaView, ProductividadView, ProductividadEmpleado
+from  AppProdAlmacen.views import EmpleadoView, AreaView, ProductividadView, ProductividadEmpleado, TemplateView
 from rest_framework import routers
 
 router = routers.DefaultRouter()
@@ -12,5 +12,6 @@ router.register('productividad',ProductividadView,base_name='Productividad')
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(router.urls)),
-    path('prodempleado/<id>', ProductividadEmpleado.as_view())
+    path('prodempleado/<id>', ProductividadEmpleado.as_view()),
+    path('grafico/', TemplateView.as_view())
 ]

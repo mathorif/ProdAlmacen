@@ -10,8 +10,9 @@ from rest_framework.response import Response
 
 from .serializers import EmpleadoSerializer, ProductividadSerializer, AreaSerializer, ContratoSerializer
 
-import plotly.offline
-import plotly.graph_objects
+import plotly.offline as opy
+import plotly.graph_objects as go
+from django.views.generic import TemplateView
 
 # Create your views here.
 def nuevo_empleado(request):
@@ -36,6 +37,23 @@ class ProductividadEmpleado(APIView):
       usuario = [Productividad.objects.filter(id_empleado=id).order_by('-fecha').values('fecha','cantidad')]
       return Response(usuario)
    
+
+class Graph(TemplateView):
+   pagina = 'index.html'
+
+   def get_context_data(self, **kwargs):
+      context = super(Graph, self).get_context_data(**kwargs)
+
+      
+      datos = [go.Bar(y=[200,100,300,400,600,256,343])]
+      titulo_grafico = "Grafica de prueba"
+
+      grafica_en_div = plotly.offline.plot(grafica, auto_open=False, output_type="div")
+
+      context['index'] = div
+      return context
+
+
 """    #grafica de barras 3 elementos
 grafica = plotly.graph_objects.figure(
    datos = [plotly.graph_objects.Bar(y=[200,100,300,400,600,256,343])],
