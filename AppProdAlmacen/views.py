@@ -36,7 +36,7 @@ class ProductividadEmpleado(APIView):
       usuario = [Productividad.objects.filter(id_empleado=id).order_by('-fecha').values('fecha','cantidad')]
       return Response(usuario)
    
-   #grafica de barras 3 elementos
+"""    #grafica de barras 3 elementos
 grafica = plotly.graph_objects.figure(
    datos = [plotly.graph_objects.Bar(y=[200,100,300,400,600,256,343])],
    layout_title_text="Grafica de prueba"
@@ -46,5 +46,5 @@ grafica = plotly.graph_objects.figure(
 grafica_en_div = plotly.offline.plot(grafica, auto_open=False, output_type="div")
 
 with open (salida.html, 'w') as marco:
-   marco.write(grafica_en_div)
+   marco.write(grafica_en_div) """
 
