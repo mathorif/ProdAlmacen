@@ -34,8 +34,16 @@ class ProductividadView(ModelViewSet):
 
 class ProductividadEmpleado(APIView):
    def get(self, request, id=None):
-      usuario = [Productividad.objects.filter(id_empleado=id).order_by('-fecha').values('fecha','cantidad')]
-      return Response(usuario)
+      usuarios = Productividad.objects.filter(id_empleado=id).order_by('-fecha').values('fecha','cantidad')
+      fechas  = []
+      cantidades = []
+      for user in usuarios:
+         print(user)
+         fechas.append(user["fecha"])
+         cantidades.append(user["cantidad"])
+      return Response({'fechas': fechas, 'cantidades': cantidades})
+
+
    
 
 class Graph(TemplateView):
@@ -54,15 +62,5 @@ class Graph(TemplateView):
       return context
 
 
-"""    #grafica de barras 3 elementos
-grafica = plotly.graph_objects.figure(
-   datos = [plotly.graph_objects.Bar(y=[200,100,300,400,600,256,343])],
-   layout_title_text="Grafica de prueba"
-)
 
-#generando html oflline.plot
-grafica_en_div = plotly.offline.plot(grafica, auto_open=False, output_type="div")
-
-with open (salida.html, 'w') as marco:
-   marco.write(grafica_en_div) """
 
